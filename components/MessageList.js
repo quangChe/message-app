@@ -18,10 +18,6 @@ export default class MessageList extends React.Component {
     onPressMessage: () => {}
   }
 
-  handlePressMessage = () => {
-    
-  }
-
   renderMessageItem = ({item}) => {
     const { onPressMessage } = this.props;
     
