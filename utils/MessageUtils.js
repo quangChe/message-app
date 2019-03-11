@@ -12,7 +12,6 @@ export const MessageShape = PropTypes.shape({
 })
 
 let messageId = 0;
-
 const getNextId = () => messageId += 1;
 
 export function createTextMessage(text) {
@@ -31,7 +30,7 @@ export function createImageMessage(uri) {
   }
 }
 
-export function createLocationmessage(coordinate) {
+export function createLocationMessage(coordinate) {
   return {
     type: 'location',
     id: getNextId(),

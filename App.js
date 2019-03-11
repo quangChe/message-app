@@ -2,8 +2,25 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Status from './components/Status';
+import MessageList from './components/MessageList';
+
+import { 
+  createTextMessage, 
+  createImageMessage, 
+  createLocationMessage } from './utils/MessageUtils';
 
 export default class App extends React.Component {
+  state = {
+    messages: [
+      createImageMessage('https://unsplash.it/300/300'),
+      createTextMessage('World'),
+      createTextMessage('Hello'),
+      createLocationMessage({
+        latitude: 37.78825,
+        longitude: -122.4324,
+      }),
+    ],
+  };
   renderMessageList() {
     return (
       <View style={styles.content}></View>
@@ -23,9 +40,12 @@ export default class App extends React.Component {
   }
 
   render() {
+    const {messages} = this.state;
     return (
       <View style={styles.container}>
         <Status/>
+        <MessageList
+          messages={messages}/>
         {this.renderMessageList()}
         {this.renderToolbar()}
         {this.renderInputMethodEditor()}
