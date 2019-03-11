@@ -19,18 +19,16 @@ export default class MessageList extends React.Component {
   }
 
   handlePressMessage = () => {
-    const {onPressMessage} = this.props;
-    return onPressMessage(item);
+    
   }
 
   renderMessageItem = ({item}) => {
     const { onPressMessage } = this.props;
-
+    
     return (
-      <View
-        key={item.id} style={styles.messageRow}>
-        <TouchableOpacity onPress={this.handlePressMessage}>
-          {this.renderMessageBody}
+      <View style={styles.messageRow}>
+        <TouchableOpacity onPress={() => onPressMessage(item)}>
+          {this.renderMessageBody(item)}
         </TouchableOpacity>
       </View>
     );
@@ -81,7 +79,7 @@ export default class MessageList extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    overflow: 'visible'
+    overflow: 'visible',
   }, 
   messageRow: {
     flexDirection: 'row',
@@ -101,13 +99,13 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   image: {
-    width: 150,
+    width: 200,
     height: 150,
     borderRadius: 10,
   },
   map: {
-    width: 250, 
-    height: 250,
+    width: 300, 
+    height: 200,
     borderRadius: 10,
   }
 })
