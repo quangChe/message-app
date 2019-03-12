@@ -17,6 +17,7 @@ import {
 import Status from './components/Status';
 import MessageList from './components/MessageList';
 import Toolbar from './components/Toolbar';
+import ImageGrid from './components/ImageGrid';
 
 export default class App extends React.Component {
   state = {
@@ -63,7 +64,10 @@ export default class App extends React.Component {
 
   renderInputMethodEditor() {
     return (
-      <View style={styles.inputMethodEditor}></View>
+      <View style={styles.inputMethodEditor}>
+        <ImageGrid
+          onPressImage={this.handlePressImageGrid}/>
+      </View>
     )
   }
 
@@ -138,12 +142,17 @@ export default class App extends React.Component {
     }
   }
 
+  handlePressImageGrid = uri => {
+    const {messages} = this.state;
+
+    this.setState({messages: [createImageMessage(uri), ...messages]});
+  }
+
   handlePressToolbarCamera = () => {
   }
 
   handlePressToolbarLocation = () => {
     const {messages} = this.state;
-    console.log('HELO?')
 
     navigator.geolocation.getCurrentPosition(position => {
       const {coords: {latitude, longitude}} = position;
