@@ -18,15 +18,15 @@ export default class KeyboardState extends React.Component {
   constructor(props) {
     super(props);
 
-    const {layout: {height}} = this.props;
+    const {layout: {height}} = props;
 
     this.state = {
       contentHeight: height,
-      keyBoardHeight: 0,
+      keyboardHeight: 0,
       keyboardVisible: false,
       keyboardWillShow: false,
       keyboardWillHide: false,
-      kyboardAnimationDuration: INITIAL_ANIMATION_DURATION,
+      keyboardAnimationDuration: INITIAL_ANIMATION_DURATION,
     }
   }
 
@@ -59,14 +59,14 @@ export default class KeyboardState extends React.Component {
   keyboardDidShow = event => {
     this.setState({
       keyboardWillShow: false,
-      keyboardDidShow: true
+      keyboardVisible: true
     });
 
     this.measure(event);
   }
 
   keyboardWillHide = event => {
-    this.setSetate({keyboardWillHide: true});
+    this.setState({keyboardWillHide: true});
 
     this.measure(event);
   }
@@ -82,7 +82,7 @@ export default class KeyboardState extends React.Component {
     const {layout} = this.props;
     const {
       endCoordinates: {height, screenY},
-      duration: INITIAL_ANIMATION_DURATION
+      duration = INITIAL_ANIMATION_DURATION
     } = event;
 
     this.setState({
@@ -114,6 +114,3 @@ export default class KeyboardState extends React.Component {
     });
   }
 }
-
-const styles = StyleSheet.create({
-});

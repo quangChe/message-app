@@ -38,6 +38,3 @@ export default class Grid extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-});
